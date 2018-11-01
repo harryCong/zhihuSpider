@@ -14,6 +14,9 @@ BOT_NAME = 'zhuhuSpider'
 SPIDER_MODULES = ['zhuhuSpider.spiders']
 NEWSPIDER_MODULE = 'zhuhuSpider.spiders'
 
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
@@ -65,6 +68,7 @@ DEFAULT_REQUEST_HEADERS = {
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'zhuhuSpider.pipelines.zhihuPipeline': 300,
+   'scrapy_redis.pipelines.RedisPipeline': 301,
 }
 MONGODB_HOST = 'localhost'
 MONGODB_PORT = 27017
@@ -89,3 +93,7 @@ MONGODB_PORT = 27017
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+# Redis的主机地址
+REDIS_HOST = "192.168.10.131"
+# 端口号
+REDIS_PORT = 6379
